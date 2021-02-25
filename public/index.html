@@ -7,6 +7,26 @@
     <title>Document</title>
   </head>
   <body>
-    <h1>Hello World</h1>
+    <h1>Locations</h1>
+    <ul id="list"></ul>
+    <script>
+      const modifyUI = (data) => {
+        let ul = document.querySelector("ul");
+        let content = data
+          .map((item) => `<li>${item.latitude} - ${item.longitude}</li>`)
+          .join("");
+
+        ul.innerHTML = content;
+        console.log(content);
+      };
+
+      const main = async () => {
+        let result = await fetch("http://localhost:8080/api/locations");
+        let data = await result.json();
+        modifyUI(data);
+      };
+
+      main();
+    </script>
   </body>
 </html>
