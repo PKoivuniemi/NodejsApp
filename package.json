@@ -1,0 +1,11 @@
+{
+  "name": "node-js-test-app",
+  "version": "1.0.0",
+  "description": "Test application for learning Nodejs and publishing on Heroku",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Petteri Koivuniemi",
+  "license": "ISC"
+}
