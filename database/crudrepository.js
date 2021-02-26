@@ -16,11 +16,11 @@ const DatabaseFunctions = {
     db = newDb;
     return db;
   },
-  addLocation: (lat, lon) => {
+  addLocation: (loc) => {
     let newLoc = {
       id: counter++,
-      latitude: Number(lat),
-      longitude: Number(lon),
+      latitude: Number(loc.latitude),
+      longitude: Number(loc.longitude),
     };
     return db.push(newLoc) ? true : false;
   },

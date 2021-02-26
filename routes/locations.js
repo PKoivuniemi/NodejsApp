@@ -17,6 +17,10 @@ locationsRouter.delete("/:id([0-9]+)", (req, res) => {
   else res.status(404).send();
 });
 
+locationsRouter.post("/", (req, res) => {
+  res.json(database.addLocation(req.body));
+});
+
 locationsRouter.get("/:p", (req, res) => {
   req.params.p === "pretty"
     ? res.send(JSON.stringify(database, null, 4))
