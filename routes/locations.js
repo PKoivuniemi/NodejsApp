@@ -1,24 +1,27 @@
 let locationsRouter = require("express").Router();
 const database = require("../database/crudrepository.js");
 
-locationsRouter.get("/", (req, res) => {
-  res.json(database.getLocations());
+locationsRouter.get("/", async (req, res) => {
+  //   res.json(database.getLocations());
+  let locations = await database.getLocations();
+  res.send(locations);
 });
 
-locationsRouter.get("/:id([0-9]+)", (req, res) => {
-  let location = database.getLocation(Number(req.params.id));
+locationsRouter.get("/:id([0-9]+)", async (req, res) => {
+  let location = await database.getLocation(Number(req.params.id));
   if (location) res.json(location);
   else res.status(404).send();
 });
 
-locationsRouter.delete("/:id([0-9]+)", (req, res) => {
-  let locations = database.deleteLocation(req.params.id);
+locationsRouter.delete("/:id([0-9]+)", async (req, res) => {
+  let locations = await database.deleteLocation(req.params.id);
   if (locations) res.json(locations);
   else res.status(404).send();
 });
 
-locationsRouter.post("/", (req, res) => {
-  res.json(database.addLocation(req.body));
+locationsRouter.post("/", async (req, res) => {
+  let loc = await database.addLocation(req.body);
+  if (loc) res.json(loc);
 });
 
 locationsRouter.get("/:p", (req, res) => {
